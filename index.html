@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self Introduction & Business Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    overflow: hidden;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    padding: 70px 100px;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .slide.active { display: flex; }
+
+  /* ===== SLIDE 1: COVER ===== */
+  .slide-cover {
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slide-cover .name {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: 12px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+  }
+  .slide-cover .name-en {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 14px;
+    color: #999;
+    margin-bottom: 56px;
+  }
+  .slide-cover .tagline {
+    font-size: 22px;
+    font-weight: 400;
+    color: #555;
+    line-height: 2.2;
+  }
+  .slide-cover .date {
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    font-size: 16px;
+    color: #bbb;
+    letter-spacing: 3px;
+  }
+  .cover-line {
+    width: 60px;
+    height: 3px;
+    background: #4f46e5;
+    margin: 0 auto 40px;
+  }
+
+  /* ===== GENERAL ===== */
+  .slide-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #4f46e5;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .slide-heading {
+    font-size: 44px;
+    font-weight: 900;
+    margin-bottom: 48px;
+    line-height: 1.3;
+    color: #1a1a1a;
+  }
+
+  /* ===== PROFILE ===== */
+  .slide-profile {
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, #4f46e5, #c7d2fe);
+  }
+  .timeline-item {
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4f46e5;
+  }
+  .timeline-year {
+    font-size: 16px;
+    color: #4f46e5;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .timeline-content {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1a1a1a;
+  }
+  .timeline-detail {
+    font-size: 19px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .highlight-number {
+    color: #4f46e5;
+    font-weight: 900;
+  }
+
+  /* ===== CURRENT BUSINESS CARDS ===== */
+  .biz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 10px;
+  }
+  .biz-card {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 32px 36px;
+  }
+  .biz-card-name {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+  .biz-card-type {
+    font-size: 15px;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+  .biz-card-stat {
+    font-size: 40px;
+    font-weight: 900;
+    color: #4f46e5;
+    margin-bottom: 6px;
+  }
+  .biz-card-label {
+    font-size: 16px;
+    color: #888;
+  }
+  .biz-card-note {
+    font-size: 16px;
+    color: #999;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* ===== MESSAGE SLIDE ===== */
+  .slide-message {
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 120px;
+  }
+  .message-text {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 2.2;
+    color: #333;
+    max-width: 950px;
+  }
+  .message-highlight {
+    font-size: 56px;
+    font-weight: 900;
+    margin: 44px 0 20px;
+    color: #4f46e5;
+    line-height: 1.3;
+  }
+
+  /* ===== MARKET SLIDES ===== */
+  .slide-market {
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .market-stats {
+    display: flex;
+    gap: 32px;
+    margin: 36px 0;
+  }
+  .market-stat-box {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .market-stat-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #4f46e5;
+    margin-bottom: 10px;
+  }
+  .market-stat-label {
+    font-size: 17px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .company-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .company-card {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 28px 30px;
+  }
+  .company-name {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+  .company-founder {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .company-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+  }
+  .metric-label {
+    color: #888;
+  }
+  .metric-value {
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  /* ===== INVESTOR SLIDE ===== */
+  .investor-point {
+    font-size: 24px;
+    line-height: 1.9;
+    color: #333;
+    margin-bottom: 18px;
+    padding-left: 24px;
+    position: relative;
+  }
+  .investor-point::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4f46e5;
+  }
+
+  /* ===== AI SLIDE ===== */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .ai-card {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .ai-card-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .ai-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+  }
+  .ai-card-text {
+    font-size: 17px;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  /* ===== CLOSING SLIDE ===== */
+  .slide-closing {
+    background: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .closing-text {
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 2;
+    color: #444;
+    max-width: 800px;
+  }
+  .closing-name {
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 56px;
+    letter-spacing: 6px;
+    color: #1a1a1a;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .nav-dot.active {
+    background: #4f46e5;
+    width: 28px;
+    border-radius: 5px;
+  }
+  .page-num {
+    position: fixed;
+    bottom: 32px;
+    right: 100px;
+    font-size: 15px;
+    color: #ccc;
+    letter-spacing: 2px;
+    z-index: 100;
+  }
+  .slide-label {
+    position: fixed;
+    bottom: 32px;
+    left: 100px;
+    font-size: 12px;
+    color: #ccc;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 100;
+  }
+
+  /* ===== SINSA GROWTH CHART ===== */
+  .growth-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    height: 220px;
+    margin: 32px 0;
+    padding: 0 40px;
+  }
+  .growth-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .growth-bar {
+    width: 80px;
+    background: linear-gradient(to top, #4f46e5, #818cf8);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    min-height: 6px;
+  }
+  .growth-bar-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #4f46e5;
+  }
+  .growth-bar-year {
+    font-size: 17px;
+    color: #888;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: COVER -->
+<div class="slide slide-cover active" id="slide-1">
+  <div class="name">塚本 大地</div>
+  <div class="name-en">DAICHI TSUKAMOTO</div>
+  <div class="cover-line"></div>
+  <div class="tagline">
+  </div>
+  <div class="date">2026.02</div>
+</div>
+
+<!-- SLIDE 2: MESSAGE -->
+<div class="slide slide-message" id="slide-2">
+  <div class="message-text">
+    日本を動かしているのは<br>
+    大企業の経営幹部、政治家、官僚の皆様であると感じています。
+  </div>
+  <div class="message-text" style="margin-top:28px;font-size:22px;color:#777;">
+    規模やインパクトが大きく、複雑性の高い世界を<br>
+    マネージし続けてこられた能力と経験に、深い敬意を抱いています。<br>
+    それに比べて自分の未熟さを日々痛感しております。
+  </div>
+  <div class="message-highlight">
+    1995年：日本のGDP 世界の18%<br>
+    <span style="font-size:42px;">2025年：3%</span>
+  </div>
+  <div class="message-text" style="margin-top:28px;font-size:22px;color:#444;">
+    厳しい競争を勝ち抜いてこられた大先輩の皆様から<br>
+    多くを学ばせていただき、<br>
+    <span style="color:#4f46e5;font-weight:700;">世界に対する日本の価値を高められるビジネスマン</span>に<br>
+    育てていただけると大変嬉しいです。
+  </div>
+</div>
+
+<!-- SLIDE 3: PROFILE - PAST -->
+<div class="slide slide-profile" id="slide-2">
+  <div class="slide-title">Profile</div>
+  <div class="slide-heading">経歴</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1993</div>
+      <div class="timeline-content">兵庫県生まれ → カナダ → 神奈川県育ち</div>
+      <div class="timeline-detail">湘南高校卒 → 名古屋大学 工学部卒</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2016（23歳）</div>
+      <div class="timeline-content">株式会社ZIZAI 創業<span style="color:#999;font-size:17px;margin-left:10px;">メディア事業</span></div>
+      <div class="timeline-detail">→ 2022年 DMMに <span class="highlight-number">80億円</span> で売却 ／ 現在 売上約60億円・営業利益約35億円</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2020（27歳）</div>
+      <div class="timeline-content">株式会社IRIAM 創業<span style="color:#999;font-size:17px;margin-left:10px;">ライブストリーミング</span></div>
+      <div class="timeline-detail">→ 2021年 DeNAに <span class="highlight-number">150億円</span> で売却 ／ 現在 売上約100億円</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">EXIT実績</div>
+      <div class="timeline-content" style="color:#4f46e5;font-weight:900;font-size:28px;">累計 約230億円（20代で2社売却）</div>
+      <div class="timeline-detail">両社とも売却後さらに成長を継続</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: PROFILE - CURRENT -->
+<div class="slide slide-profile" id="slide-3">
+  <div class="slide-title">Current Business</div>
+  <div class="slide-heading">現在経営している事業</div>
+  <div class="biz-grid">
+    <div class="biz-card">
+      <div class="biz-card-name">SINSA</div>
+      <div class="biz-card-type">ホビー系 EC ／ トレーディングカード</div>
+      <div class="biz-card-stat">400億円</div>
+      <div class="biz-card-label">4期売上予測（2026年6月期）</div>
+      <div class="biz-card-note">3年で売上57倍に成長<br>US・カナダ・香港・台湾・シンガポール・UKで展開</div>
+    </div>
+    <div class="biz-card">
+      <div class="biz-card-name">SIG</div>
+      <div class="biz-card-type">輸出商社</div>
+      <div class="biz-card-stat">740億円</div>
+      <div class="biz-card-label">売上（2025年6月期）</div>
+      <div class="biz-card-note"></div>
+    </div>
+    <div class="biz-card">
+      <div class="biz-card-name">TD Capital</div>
+      <div class="biz-card-type">自己勘定投資会社</div>
+      <div class="biz-card-stat">100億円</div>
+      <div class="biz-card-label">自己資本</div>
+      <div class="biz-card-note">自己資金による投資運用</div>
+    </div>
+    <div class="biz-card" style="border-color:#c7d2fe;background:#f0f0ff;">
+      <div class="biz-card-name" style="color:#4f46e5;">グループ合計</div>
+      <div class="biz-card-type">TOTAL REVENUE</div>
+      <div class="biz-card-stat" style="font-size:46px;">約1,200億円</div>
+      <div class="biz-card-label">グループ売上規模</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: SINSA GROWTH -->
+<div class="slide slide-market" id="slide-4">
+  <div class="slide-title">SINSA Growth</div>
+  <div class="slide-heading">SINSA ─ 3年で売上57倍の成長軌跡</div>
+  <div style="width:100%;height:400px;margin:20px 0;">
+    <canvas id="sinsaChart" width="1200" height="400" style="width:100%;height:100%;"></canvas>
+  </div>
+  <div style="display:flex;gap:28px;margin-top:24px;">
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:36px;">×57</div>
+      <div class="market-stat-label">3年間の売上成長率</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:36px;">6カ国</div>
+      <div class="market-stat-label">海外展開</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: TRADING CARD PRIMARY MARKET -->
+<div class="slide slide-market" id="slide-5">
+  <div class="slide-title">Primary Market Size</div>
+  <div class="slide-heading">トレカ一次流通（メーカー出荷）市場規模</div>
+  <div style="width:100%;height:360px;margin:8px 0;">
+    <canvas id="primaryMarketChart" width="1200" height="360" style="width:100%;height:100%;"></canvas>
+  </div>
+  <div style="display:flex;gap:24px;margin-top:12px;">
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">$3.7B（0.6兆円）→ $24B（3.6兆円）</div>
+      <div class="market-stat-label">2020年 → 2030年予測（約6.5倍）</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">CAGR 25%</div>
+      <div class="market-stat-label">過去5年間の年平均成長率<br>（2020→2025）</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">$11.5B（約1.7兆円）</div>
+      <div class="market-stat-label">2025年実績<br>※メーカー売上ベース</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#aaa;margin-top:12px;">※ Fanatics, Hasbro, Konami, Bandai Namco, Kayou等の決算データおよび業界レポートに基づく推計。二次流通（転売市場）は含まない。</p>
+</div>
+
+
+<!-- SLIDE 6: KEY PLAYERS -->
+<div class="slide slide-market" id="slide-6">
+  <div class="slide-title">Key Players</div>
+  <div class="slide-heading">世界のトレカ市場の主要プレイヤー</div>
+  <div class="company-row">
+    <div class="company-card">
+      <div class="company-name">Fanatics</div>
+      <div class="company-founder">Michael Rubin<br>eBayに$2.4B（約3,600億円）で事業売却した連続起業家</div>
+      <div class="company-metrics">
+        <div class="metric-row">
+          <span class="metric-label">企業評価額</span>
+          <span class="metric-value">$31B（4.7兆円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">累計調達額</span>
+          <span class="metric-value">$4.85B（7,300億円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">カード事業評価</span>
+          <span class="metric-value">$10.4B（1.6兆円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">主要投資家</span>
+          <span class="metric-value" style="font-size:13px;">SoftBank / BlackRock</span>
+        </div>
+      </div>
+    </div>
+    <div class="company-card">
+      <div class="company-name">Whatnot</div>
+      <div class="company-founder">Grant LaFontaine<br>元Facebook・Google、連続起業家</div>
+      <div class="company-metrics">
+        <div class="metric-row">
+          <span class="metric-label">企業評価額</span>
+          <span class="metric-value">$11.5B（1.7兆円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">累計調達額</span>
+          <span class="metric-value">$975M（1,460億円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">GMV成長</span>
+          <span class="metric-value">$3B（4,500億円）→$8B（1.2兆円）/ 2年</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">主要投資家</span>
+          <span class="metric-value" style="font-size:13px;">a16z / Sequoia</span>
+        </div>
+      </div>
+    </div>
+    <div class="company-card">
+      <div class="company-name">GameStop</div>
+      <div class="company-founder">Ryan Cohen（CEO）<br>Chewy共同創業者（PetSmartに$3.35B（約5,000億円）で売却）</div>
+      <div class="company-metrics">
+        <div class="metric-row">
+          <span class="metric-label">時価総額</span>
+          <span class="metric-value">$10.5B（1.6兆円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">カード部門</span>
+          <span class="metric-value">前年比 +50〜60%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">保有現金</span>
+          <span class="metric-value">$9B（約1.4兆円）</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">目標</span>
+          <span class="metric-value">時価総額 $100B（15兆円）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: TOP INVESTORS -->
+<div class="slide slide-market" id="slide-7">
+  <div class="slide-title">Smart Money</div>
+  <div class="slide-heading">世界トップの投資家がトレカ市場に参入</div>
+  <div style="margin-top:12px;">
+    <div class="investor-point" style="font-size:26px;">
+      PSA（世界最大のトレカ鑑定会社）の株式公開買付に<br>
+      <span class="highlight-number">2025年ヘッジファンド収益 TOP10のうち2名</span>が参加
+    </div>
+  </div>
+  <div style="display:flex;gap:28px;margin:36px 0;">
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:36px;">#1</div>
+      <div class="market-stat-label" style="font-size:20px;color:#1a1a1a;font-weight:700;margin-top:6px;">Steve Cohen</div>
+      <div class="market-stat-label" style="font-size:17px;">Point72 / 年間個人収益 $3.4B（約5,100億円）<br>Cohen Private Ventures で出資</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:36px;">#6</div>
+      <div class="market-stat-label" style="font-size:20px;color:#1a1a1a;font-weight:700;margin-top:6px;">Dan Sundheim</div>
+      <div class="market-stat-label" style="font-size:17px;">D1 Capital / 年間個人収益 $2.3B（約3,450億円）<br>最大級出資者として参加</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:36px;">$700M</div>
+      <div class="market-stat-label" style="font-size:20px;color:#1a1a1a;font-weight:700;margin-top:6px;">PSA 評価額</div>
+      <div class="market-stat-label" style="font-size:17px;">約1,050億円<br>機関投資家が本格参入</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: AI x BUSINESS -->
+<div class="slide slide-market" id="slide-8">
+  <div class="slide-title">AI × Management</div>
+  <div class="slide-heading">AI が変える会社経営</div>
+  <p style="font-size:21px;color:#666;margin-bottom:28px;line-height:1.8;">SINSAは3年で売上57倍を達成。少人数チームでの急成長を可能にしたのはAIの徹底活用です。</p>
+  <!-- Hero stat -->
+  <div style="background:#f0f0ff;border:2px solid #c7d2fe;border-radius:16px;padding:36px 44px;margin-bottom:28px;display:flex;align-items:center;gap:48px;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div style="font-size:18px;color:#888;margin-bottom:8px;">従来</div>
+      <div style="font-size:42px;font-weight:900;color:#1a1a1a;">エンジニア50人</div>
+      <div style="font-size:42px;font-weight:900;color:#1a1a1a;">× 3年</div>
+    </div>
+    <div style="font-size:48px;color:#4f46e5;flex-shrink:0;">→</div>
+    <div style="text-align:center;flex-shrink:0;">
+      <div style="font-size:18px;color:#888;margin-bottom:8px;">AI活用</div>
+      <div style="font-size:42px;font-weight:900;color:#4f46e5;">数人</div>
+      <div style="font-size:42px;font-weight:900;color:#4f46e5;">× 1ヶ月</div>
+    </div>
+    <div style="border-left:1px solid #c7d2fe;padding-left:40px;flex:1;">
+      <div style="font-size:20px;color:#555;line-height:1.8;">同等のプロダクトをAIを活用して<br>圧倒的なスピードとコストで開発</div>
+    </div>
+  </div>
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="ai-card-title">意思決定の速度と精度</div>
+      <div class="ai-card-text">
+        データ分析・価格設定・商品決定・<br>マーケティング・デザインをAIで実行。
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-title">少人数で巨大な事業を運営</div>
+      <div class="ai-card-text">
+        人件費を抑えながら<br>売上400億円規模の事業を運営可能に。
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-title">グローバル展開の加速</div>
+      <div class="ai-card-text">
+        多言語対応・各国の市場分析・<br>顧客対応をAIで自動化。
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-title">利益構造の根本的変化</div>
+      <div class="ai-card-text">
+        販管費を最小化しながら<br>「小さな組織で大きな売上と利益」を実現。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav" id="nav"></div>
+<div class="page-num" id="pageNum">01 / 10</div>
+<div class="slide-label" id="slideLabel">COVER</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const labels = ['COVER','MESSAGE','PROFILE','CURRENT BUSINESS','SINSA GROWTH','PRIMARY MARKET','KEY PLAYERS','SMART MONEY','AI × MANAGEMENT'];
+  let current = 0;
+
+  const nav = document.getElementById('nav');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    nav.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    nav.children[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    nav.children[current].classList.add('active');
+    document.getElementById('pageNum').textContent =
+      String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+    document.getElementById('slideLabel').textContent = labels[current] || '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      if (current < slides.length - 1) goTo(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (current > 0) goTo(current - 1);
+    }
+  });
+
+  // SINSA Chart
+  const canvas = document.getElementById('sinsaChart');
+  const ctx = canvas.getContext('2d');
+  function drawChart() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    const W = rect.width;
+    const H = rect.height;
+
+    const data = [
+      { label: '1期', value: 7, display: '7億円' },
+      { label: '2期', value: 70, display: '70億円' },
+      { label: '3期', value: 252, display: '252億円' },
+      { label: '4期（予測）', value: 400, display: '400億円' }
+    ];
+    const maxVal = 440;
+    const padLeft = 80;
+    const padRight = 60;
+    const padTop = 60;
+    const padBottom = 70;
+    const chartW = W - padLeft - padRight;
+    const chartH = H - padTop - padBottom;
+    const barW = Math.min(chartW / data.length * 0.55, 120);
+    const gap = chartW / data.length;
+
+    // Grid lines
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 1;
+    ctx.font = '15px Noto Sans JP';
+    ctx.fillStyle = '#aaa';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 4; i++) {
+      const y = padTop + chartH - (chartH * (i * 100) / maxVal);
+      ctx.beginPath();
+      ctx.moveTo(padLeft, y);
+      ctx.lineTo(W - padRight, y);
+      ctx.stroke();
+      ctx.fillText(i * 100 + '億', padLeft - 12, y + 5);
+    }
+
+    // Bars
+    data.forEach((d, i) => {
+      const x = padLeft + gap * i + (gap - barW) / 2;
+      const barH = (d.value / maxVal) * chartH;
+      const y = padTop + chartH - barH;
+
+      // Gradient
+      const grad = ctx.createLinearGradient(x, y + barH, x, y);
+      if (i === data.length - 1) {
+        grad.addColorStop(0, '#3730a3');
+        grad.addColorStop(1, '#818cf8');
+      } else {
+        grad.addColorStop(0, '#4f46e5');
+        grad.addColorStop(1, '#a5b4fc');
+      }
+      ctx.fillStyle = grad;
+
+      // Rounded top
+      const r = 8;
+      ctx.beginPath();
+      ctx.moveTo(x, y + barH);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.lineTo(x + barW - r, y);
+      ctx.quadraticCurveTo(x + barW, y, x + barW, y + r);
+      ctx.lineTo(x + barW, y + barH);
+      ctx.closePath();
+      ctx.fill();
+
+      // Value on top
+      ctx.fillStyle = i === data.length - 1 ? '#3730a3' : '#4f46e5';
+      ctx.font = i === data.length - 1 ? 'bold 28px Noto Sans JP' : 'bold 24px Noto Sans JP';
+      ctx.textAlign = 'center';
+      ctx.fillText(d.display, x + barW / 2, y - 16);
+
+      // Label below
+      ctx.fillStyle = '#666';
+      ctx.font = '18px Noto Sans JP';
+      ctx.fillText(d.label, x + barW / 2, padTop + chartH + 40);
+    });
+
+    // Growth arrows
+    ctx.strokeStyle = '#4f46e5';
+    ctx.fillStyle = '#4f46e5';
+    ctx.lineWidth = 2;
+    ctx.font = 'bold 16px Noto Sans JP';
+    ctx.textAlign = 'center';
+    const growths = ['×10', '×3.6', '×1.6'];
+    for (let i = 0; i < data.length - 1; i++) {
+      const x1 = padLeft + gap * i + gap / 2;
+      const x2 = padLeft + gap * (i + 1) + gap / 2;
+      const midX = (x1 + x2) / 2;
+      const barH1 = (data[i].value / maxVal) * chartH;
+      const barH2 = (data[i+1].value / maxVal) * chartH;
+      const y1 = padTop + chartH - barH1 - 40;
+      const y2 = padTop + chartH - barH2 - 40;
+      const arrowY = Math.min(y1, y2) - 20;
+      ctx.fillText(growths[i], midX, arrowY - 4);
+    }
+  }
+
+  // Primary Market Chart
+  const pmCanvas = document.getElementById('primaryMarketChart');
+  const pmCtx = pmCanvas.getContext('2d');
+  function drawPrimaryChart() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = pmCanvas.getBoundingClientRect();
+    pmCanvas.width = rect.width * dpr;
+    pmCanvas.height = rect.height * dpr;
+    pmCtx.scale(dpr, dpr);
+    const W = rect.width;
+    const H = rect.height;
+
+    const data = [
+      { label: '2020', value: 3.7, display: '$3.7B', displayJP: '(0.6兆円)', growth: '', forecast: false },
+      { label: '2021', value: 5.2, display: '$5.2B', displayJP: '(0.8兆円)', growth: '+41%', forecast: false },
+      { label: '2022', value: 6.3, display: '$6.3B', displayJP: '(0.9兆円)', growth: '+21%', forecast: false },
+      { label: '2023', value: 6.9, display: '$6.9B', displayJP: '(1.0兆円)', growth: '+10%', forecast: false },
+      { label: '2024', value: 9.2, display: '$9.2B', displayJP: '(1.4兆円)', growth: '+33%', forecast: false },
+      { label: '2025', value: 11.5, display: '$11.5B', displayJP: '(1.7兆円)', growth: '+25%', forecast: false },
+      { label: '2026', value: 14.0, display: '$14.0B', displayJP: '(2.1兆円)', growth: '+22%', forecast: true },
+      { label: '2027', value: 16.5, display: '$16.5B', displayJP: '(2.5兆円)', growth: '+18%', forecast: true },
+      { label: '2028', value: 19.0, display: '$19.0B', displayJP: '(2.9兆円)', growth: '+15%', forecast: true },
+      { label: '2029', value: 21.5, display: '$21.5B', displayJP: '(3.2兆円)', growth: '+13%', forecast: true },
+      { label: '2030', value: 24.0, display: '$24.0B', displayJP: '(3.6兆円)', growth: '+12%', forecast: true }
+    ];
+    const maxVal = 27;
+    const padLeft = 70;
+    const padRight = 30;
+    const padTop = 50;
+    const padBottom = 60;
+    const chartW = W - padLeft - padRight;
+    const chartH = H - padTop - padBottom;
+    const gap = chartW / data.length;
+    const barW = Math.min(gap * 0.6, 70);
+
+    // Grid lines
+    pmCtx.strokeStyle = '#e5e7eb';
+    pmCtx.lineWidth = 1;
+    pmCtx.font = '13px Noto Sans JP';
+    pmCtx.fillStyle = '#aaa';
+    pmCtx.textAlign = 'right';
+    for (let i = 0; i <= 3; i++) {
+      const val = i * 5;
+      const y = padTop + chartH - (chartH * val / maxVal);
+      pmCtx.beginPath();
+      pmCtx.moveTo(padLeft, y);
+      pmCtx.lineTo(W - padRight, y);
+      pmCtx.stroke();
+      pmCtx.fillText('$' + val + 'B', padLeft - 10, y + 4);
+    }
+
+    // Bars
+    data.forEach((d, i) => {
+      const x = padLeft + gap * i + (gap - barW) / 2;
+      const barH = (d.value / maxVal) * chartH;
+      const y = padTop + chartH - barH;
+
+      const grad = pmCtx.createLinearGradient(x, y + barH, x, y);
+      if (d.forecast) {
+        grad.addColorStop(0, '#a5b4fc');
+        grad.addColorStop(1, '#c7d2fe');
+      } else {
+        grad.addColorStop(0, '#3730a3');
+        grad.addColorStop(1, '#818cf8');
+      }
+      pmCtx.fillStyle = grad;
+
+      const r = 6;
+      pmCtx.beginPath();
+      pmCtx.moveTo(x, y + barH);
+      pmCtx.lineTo(x, y + r);
+      pmCtx.quadraticCurveTo(x, y, x + r, y);
+      pmCtx.lineTo(x + barW - r, y);
+      pmCtx.quadraticCurveTo(x + barW, y, x + barW, y + r);
+      pmCtx.lineTo(x + barW, y + barH);
+      pmCtx.closePath();
+      pmCtx.fill();
+
+      // Dashed border for forecast
+      if (d.forecast) {
+        pmCtx.setLineDash([4, 3]);
+        pmCtx.strokeStyle = '#818cf8';
+        pmCtx.lineWidth = 1.5;
+        pmCtx.beginPath();
+        pmCtx.moveTo(x, y + barH);
+        pmCtx.lineTo(x, y + r);
+        pmCtx.quadraticCurveTo(x, y, x + r, y);
+        pmCtx.lineTo(x + barW - r, y);
+        pmCtx.quadraticCurveTo(x + barW, y, x + barW, y + r);
+        pmCtx.lineTo(x + barW, y + barH);
+        pmCtx.stroke();
+        pmCtx.setLineDash([]);
+      }
+
+      // Value on top
+      pmCtx.fillStyle = d.forecast ? '#818cf8' : '#3730a3';
+      pmCtx.font = 'bold 15px Noto Sans JP';
+      pmCtx.textAlign = 'center';
+      pmCtx.fillText(d.display, x + barW / 2, y - 32);
+
+      // Yen equivalent
+      pmCtx.fillStyle = d.forecast ? '#a5b4fc' : '#6366f1';
+      pmCtx.font = '11px Noto Sans JP';
+      pmCtx.fillText(d.displayJP, x + barW / 2, y - 19);
+
+      // Growth rate
+      if (d.growth) {
+        pmCtx.fillStyle = '#4f46e5';
+        pmCtx.font = 'bold 13px Noto Sans JP';
+        pmCtx.fillText(d.growth, x + barW / 2, y - 5);
+      }
+
+      // Year label
+      pmCtx.fillStyle = d.forecast ? '#aaa' : '#666';
+      pmCtx.font = '14px Noto Sans JP';
+      pmCtx.fillText(d.label, x + barW / 2, padTop + chartH + 24);
+
+      // "予測" label for first forecast bar
+      if (d.label === '2026') {
+        pmCtx.fillStyle = '#aaa';
+        pmCtx.font = '12px Noto Sans JP';
+        pmCtx.fillText('予測 →', x + barW / 2 + 30, padTop + chartH + 46);
+      }
+      if (d.label === '2025') {
+        pmCtx.fillStyle = '#666';
+        pmCtx.font = '12px Noto Sans JP';
+        pmCtx.fillText('← 実績', x + barW / 2 - 24, padTop + chartH + 46);
+      }
+    });
+  }
+
+  // Secondary Market Chart
+  const smCanvas = document.getElementById('secondaryMarketChart');
+  const smCtx = smCanvas.getContext('2d');
+  function drawSecondaryChart() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = smCanvas.getBoundingClientRect();
+    smCanvas.width = rect.width * dpr;
+    smCanvas.height = rect.height * dpr;
+    smCtx.scale(dpr, dpr);
+    const W = rect.width;
+    const H = rect.height;
+
+    const data = [
+      { label: '2020', value: 6.5, display: '$6.5B', displayJP: '(1.0兆円)', growth: '', forecast: false },
+      { label: '2021', value: 10.0, display: '$10.0B', displayJP: '(1.5兆円)', growth: '+54%', forecast: false },
+      { label: '2022', value: 9.5, display: '$9.5B', displayJP: '(1.4兆円)', growth: '-5%', forecast: false },
+      { label: '2023', value: 11.5, display: '$11.5B', displayJP: '(1.7兆円)', growth: '+21%', forecast: false },
+      { label: '2024', value: 15.5, display: '$15.5B', displayJP: '(2.3兆円)', growth: '+35%', forecast: false },
+      { label: '2025', value: 21.0, display: '$21.0B', displayJP: '(3.2兆円)', growth: '+35%', forecast: false },
+      { label: '2026', value: 28.0, display: '$28.0B', displayJP: '(4.2兆円)', growth: '+33%', forecast: true },
+      { label: '2027', value: 35.0, display: '$35.0B', displayJP: '(5.3兆円)', growth: '+25%', forecast: true },
+      { label: '2028', value: 42.0, display: '$42.0B', displayJP: '(6.3兆円)', growth: '+20%', forecast: true },
+      { label: '2029', value: 48.0, display: '$48.0B', displayJP: '(7.2兆円)', growth: '+14%', forecast: true },
+      { label: '2030', value: 54.0, display: '$54.0B', displayJP: '(8.1兆円)', growth: '+13%', forecast: true }
+    ];
+    const maxVal = 60;
+    const padLeft = 70;
+    const padRight = 30;
+    const padTop = 50;
+    const padBottom = 60;
+    const chartW = W - padLeft - padRight;
+    const chartH = H - padTop - padBottom;
+    const gap = chartW / data.length;
+    const barW = Math.min(gap * 0.6, 70);
+
+    // Grid lines
+    smCtx.strokeStyle = '#e5e7eb';
+    smCtx.lineWidth = 1;
+    smCtx.font = '13px Noto Sans JP';
+    smCtx.fillStyle = '#aaa';
+    smCtx.textAlign = 'right';
+    for (let i = 0; i <= 5; i++) {
+      const val = i * 5;
+      const y = padTop + chartH - (chartH * val / maxVal);
+      smCtx.beginPath();
+      smCtx.moveTo(padLeft, y);
+      smCtx.lineTo(W - padRight, y);
+      smCtx.stroke();
+      smCtx.fillText('$' + val + 'B', padLeft - 10, y + 4);
+    }
+
+    // Bars
+    data.forEach((d, i) => {
+      const x = padLeft + gap * i + (gap - barW) / 2;
+      const barH = (d.value / maxVal) * chartH;
+      const y = padTop + chartH - barH;
+
+      const grad = smCtx.createLinearGradient(x, y + barH, x, y);
+      if (d.forecast) {
+        grad.addColorStop(0, '#fbbf24');
+        grad.addColorStop(1, '#fde68a');
+      } else {
+        grad.addColorStop(0, '#b45309');
+        grad.addColorStop(1, '#f59e0b');
+      }
+      smCtx.fillStyle = grad;
+
+      const r = 6;
+      smCtx.beginPath();
+      smCtx.moveTo(x, y + barH);
+      smCtx.lineTo(x, y + r);
+      smCtx.quadraticCurveTo(x, y, x + r, y);
+      smCtx.lineTo(x + barW - r, y);
+      smCtx.quadraticCurveTo(x + barW, y, x + barW, y + r);
+      smCtx.lineTo(x + barW, y + barH);
+      smCtx.closePath();
+      smCtx.fill();
+
+      if (d.forecast) {
+        smCtx.setLineDash([4, 3]);
+        smCtx.strokeStyle = '#f59e0b';
+        smCtx.lineWidth = 1.5;
+        smCtx.beginPath();
+        smCtx.moveTo(x, y + barH);
+        smCtx.lineTo(x, y + r);
+        smCtx.quadraticCurveTo(x, y, x + r, y);
+        smCtx.lineTo(x + barW - r, y);
+        smCtx.quadraticCurveTo(x + barW, y, x + barW, y + r);
+        smCtx.lineTo(x + barW, y + barH);
+        smCtx.stroke();
+        smCtx.setLineDash([]);
+      }
+
+      // Value on top
+      smCtx.fillStyle = d.forecast ? '#d97706' : '#92400e';
+      smCtx.font = 'bold 15px Noto Sans JP';
+      smCtx.textAlign = 'center';
+      smCtx.fillText(d.display, x + barW / 2, y - 32);
+
+      // Yen equivalent
+      smCtx.fillStyle = d.forecast ? '#f59e0b' : '#b45309';
+      smCtx.font = '11px Noto Sans JP';
+      smCtx.fillText(d.displayJP, x + barW / 2, y - 19);
+
+      // Growth rate
+      if (d.growth) {
+        smCtx.fillStyle = '#b45309';
+        smCtx.font = 'bold 13px Noto Sans JP';
+        smCtx.fillText(d.growth, x + barW / 2, y - 5);
+      }
+
+      // Year label
+      smCtx.fillStyle = d.forecast ? '#aaa' : '#666';
+      smCtx.font = '14px Noto Sans JP';
+      smCtx.fillText(d.label, x + barW / 2, padTop + chartH + 24);
+
+      if (d.label === '2026') {
+        smCtx.fillStyle = '#aaa';
+        smCtx.font = '12px Noto Sans JP';
+        smCtx.fillText('予測 →', x + barW / 2 + 30, padTop + chartH + 46);
+      }
+      if (d.label === '2025') {
+        smCtx.fillStyle = '#666';
+        smCtx.font = '12px Noto Sans JP';
+        smCtx.fillText('← 実績', x + barW / 2 - 24, padTop + chartH + 46);
+      }
+    });
+  }
+
+  // Draw on load and resize
+  setTimeout(drawChart, 100);
+  setTimeout(drawPrimaryChart, 150);
+  setTimeout(drawSecondaryChart, 200);
+  window.addEventListener('resize', () => { drawChart(); drawPrimaryChart(); drawSecondaryChart(); });
+  // Redraw when navigating to slides
+  const origGoTo = goTo;
+  goTo = function(index) {
+    origGoTo(index);
+    if (index === 4) setTimeout(drawChart, 50);
+    if (index === 5) setTimeout(drawPrimaryChart, 50);
+  };
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && current < slides.length - 1) goTo(current + 1);
+      else if (diff < 0 && current > 0) goTo(current - 1);
+    }
+  });
+</script>
+
+</body>
+</html>
