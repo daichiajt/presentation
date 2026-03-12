@@ -779,11 +779,11 @@
   function drawChart() {
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-    const W = rect.width;
-    const H = rect.height;
+    const W = rect.width || 1200;
+    const H = rect.height || 400;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const data = [
       { label: '1期', value: 7, display: '7億円' },
@@ -883,11 +883,11 @@
   function drawPrimaryChart() {
     const dpr = window.devicePixelRatio || 1;
     const rect = pmCanvas.getBoundingClientRect();
-    pmCanvas.width = rect.width * dpr;
-    pmCanvas.height = rect.height * dpr;
-    pmCtx.scale(dpr, dpr);
-    const W = rect.width;
-    const H = rect.height;
+    const W = rect.width || 1200;
+    const H = rect.height || 360;
+    pmCanvas.width = W * dpr;
+    pmCanvas.height = H * dpr;
+    pmCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const data = [
       { label: '2020', value: 3.7, display: '$3.7B', displayJP: '(0.6兆円)', growth: '', forecast: false },
@@ -1014,11 +1014,11 @@
   function drawSecondaryChart() {
     const dpr = window.devicePixelRatio || 1;
     const rect = smCanvas.getBoundingClientRect();
-    smCanvas.width = rect.width * dpr;
-    smCanvas.height = rect.height * dpr;
-    smCtx.scale(dpr, dpr);
-    const W = rect.width;
-    const H = rect.height;
+    const W = rect.width || 1200;
+    const H = rect.height || 360;
+    smCanvas.width = W * dpr;
+    smCanvas.height = H * dpr;
+    smCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const data = [
       { label: '2020', value: 6.5, display: '$6.5B', displayJP: '(1.0兆円)', growth: '', forecast: false },
