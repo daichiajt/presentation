@@ -581,7 +581,31 @@
 </div>
 
 
-<!-- SLIDE 6: KEY PLAYERS -->
+<!-- SLIDE 6: TRADING CARD SECONDARY MARKET -->
+<div class="slide slide-market" id="slide-6b">
+  <div class="slide-title">Secondary Market Size</div>
+  <div class="slide-heading">トレカ二次流通（転売・リセール）市場規模</div>
+  <div style="width:100%;height:360px;margin:8px 0;">
+    <canvas id="secondaryMarketChart" width="1200" height="360" style="width:100%;height:100%;"></canvas>
+  </div>
+  <div style="display:flex;gap:24px;margin-top:12px;">
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">$6.5B（1.0兆円）→ $54B（8.1兆円）</div>
+      <div class="market-stat-label">2020年 → 2030年予測（約8.3倍）</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">CAGR 26%</div>
+      <div class="market-stat-label">過去5年間の年平均成長率<br>（2020→2025）</div>
+    </div>
+    <div class="market-stat-box" style="flex:1;">
+      <div class="market-stat-number" style="font-size:32px;">$21.0B（約3.2兆円）</div>
+      <div class="market-stat-label">2025年実績<br>※転売・リセール市場</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#aaa;margin-top:12px;">※ eBay, Whatnot, COMC, StockX等のマーケットプレイスデータおよび業界レポートに基づく推計。一次流通（メーカー出荷）は含まない。</p>
+</div>
+
+<!-- SLIDE 7: KEY PLAYERS -->
 <div class="slide slide-market" id="slide-6">
   <div class="slide-title">Key Players</div>
   <div class="slide-heading">世界のトレカ市場の主要プレイヤー</div>
@@ -741,7 +765,7 @@
 
 <script>
   const slides = document.querySelectorAll('.slide');
-  const labels = ['COVER','MESSAGE','PROFILE','CURRENT BUSINESS','SINSA GROWTH','PRIMARY MARKET','KEY PLAYERS','SMART MONEY','AI × MANAGEMENT'];
+  const labels = ['COVER','MESSAGE','PROFILE','CURRENT BUSINESS','SINSA GROWTH','PRIMARY MARKET','SECONDARY MARKET','KEY PLAYERS','SMART MONEY','AI × MANAGEMENT'];
   let current = 0;
 
   const nav = document.getElementById('nav');
@@ -1138,16 +1162,14 @@
   }
 
   // Draw on load and resize
-  setTimeout(drawChart, 100);
-  setTimeout(drawPrimaryChart, 150);
-  setTimeout(drawSecondaryChart, 200);
   window.addEventListener('resize', () => { drawChart(); drawPrimaryChart(); drawSecondaryChart(); });
   // Redraw when navigating to slides
   const origGoTo = goTo;
   goTo = function(index) {
     origGoTo(index);
-    if (index === 4) setTimeout(drawChart, 50);
-    if (index === 5) setTimeout(drawPrimaryChart, 50);
+    if (index === 4) { setTimeout(drawChart, 100); setTimeout(drawChart, 500); }
+    if (index === 5) { setTimeout(drawPrimaryChart, 100); setTimeout(drawPrimaryChart, 500); }
+    if (index === 6) { setTimeout(drawSecondaryChart, 100); setTimeout(drawSecondaryChart, 500); }
   };
 
   let touchStartX = 0;
